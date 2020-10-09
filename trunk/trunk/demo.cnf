@@ -1,0 +1,13 @@
+[client]
+    database = xxx
+    user = xxx
+    password = xxx
+    default-character-set = utf8mb4
+
+[miniprogram]
+    appid = xxxxxx
+    secret = xxxxxx
+
+[oss]
+    appid = xxx
+    secret = xxx

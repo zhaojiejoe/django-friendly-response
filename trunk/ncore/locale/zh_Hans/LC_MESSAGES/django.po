@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-11 13:33+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ncore/exceptions.py:26
+msgid "errors"
+msgstr "错误"
+
+#: ncore/ret_codes.py:16
+msgid "ok"
+msgstr "成功"
+
+#: ncore/ret_codes.py:17
+msgid "no_such_user"
+msgstr "用户不存在"
+
+#: ncore/ret_codes.py:18
+msgid "incorrect_password"
+msgstr "密码不正确"
+
+#: ncore/ret_codes.py:19
+msgid "inactived_user"
+msgstr "用户未激活"
+
+#: ncore/ret_codes.py:20
+msgid "no_dingtalk_code"
+msgstr "缺少钉钉code参数"
+
+#: ncore/ret_codes.py:21
+msgid "no_entwechat_code"
+msgstr "缺少企业微信code参数"
+
+#: ncore/ret_codes.py:22
+msgid "no_entwechat_state"
+msgstr "缺少企业微信state参数"
+
+#: ncore/ret_codes.py:23
+msgid "user_pwd_error"
+msgstr "账号或者密码错误"
+
+#: ncore/ret_codes.py:24
+msgid "invalid_jwt_token"
+msgstr "非法的jwt令牌"
+
+msgid "A user with that username already exists."
+msgstr "该用户名已存在"
