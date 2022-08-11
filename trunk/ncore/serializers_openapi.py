@@ -2,14 +2,17 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-class LoginInSerializer(serializers.Serializer):
+class LoginRequestSerializer(serializers.Serializer):
     """
-    登录schema
+    登录请求schema
     """
     username = serializers.CharField(required=True, help_text="账号", read_only=False)
     password = serializers.CharField(required=True, help_text="密码", read_only=False)
 
-class LoginInFinishSerializer(serializers.Serializer):
+class LoginResponseSerializer(serializers.Serializer):
+    """
+    登录返回schema
+    """
     user_id = serializers.IntegerField(required=True, help_text="用户id")
 
 class UserSerializer(serializers.ModelSerializer):

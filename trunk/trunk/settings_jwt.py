@@ -6,6 +6,12 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=8),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
 REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
@@ -19,13 +25,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.JSONParser',
     ),
     'EXCEPTION_HANDLER': 'ncore.exceptions.custom_exception_handler',
-
+    'DEFAULT_SCHEMA_CLASS': 'ncore.schema.CustomAutoSchema',
 }

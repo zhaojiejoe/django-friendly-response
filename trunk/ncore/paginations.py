@@ -13,3 +13,23 @@ class CustomerPagination(pagination.PageNumberPagination):
             'current_page': self.page.number,
             'results': data
         }, code=Codes.OK))
+
+    def get_paginated_response_schema(self, schema):
+        return {
+            'type': 'object',
+            'properties': {
+                'count': {
+                    'type': 'integer',
+                    'example': 123,
+                },
+                'pages': {
+                    'type': 'integer',
+                    'example': 123,
+                },
+                'current_page': {
+                    'type': 'integer',
+                    'example': 123,
+                },
+                'results': schema,
+            },
+        }

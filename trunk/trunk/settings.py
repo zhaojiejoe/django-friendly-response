@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_oss_storage',
     'rest_framework',
-    'rest_framework_jwt',
+    'rest_framework_simplejwt',
     'django_filters',
     'easyaudit',
     'drf_yasg',
@@ -49,21 +49,12 @@ INSTALLED_APPS = [
     'dingtalkapi',
     'entwechatapi',
     'wechatminiprogramapi',
+    'drf_spectacular',
+    'drf_spectacular_sidecar'
     # 'silk',
-    # 'elasticapm.contrib.django',
 ]
 
-ELASTIC_APM = {
-    'SERVICE_NAME': 'gasproject',
-    #'SECRET_TOKEN': '',
-    'SERVER_URL': 'http://192.168.1.233:8200',
-    'DJANGO_TRANSACTION_NAME_FROM_ROUTE': True,
-    'DEBUG': True,
-}
-
-
 MIDDLEWARE = [
-    #'elasticapm.contrib.django.middleware.TracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -181,6 +172,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'ncore.authentications.CsrfExemptSessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.MultiPartParser',
@@ -188,7 +180,7 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ),
     'EXCEPTION_HANDLER': 'ncore.exceptions.custom_exception_handler',
-
+    'DEFAULT_SCHEMA_CLASS': 'ncore.schema.CustomAutoSchema',
 }
 
 SESSION_COOKIE_HTTPONLY = True  # this is default value
@@ -207,6 +199,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 from .settings_swagger import *
+from .settings_openapi import *
 
 # 测试环境及部分项目不需要使用oss
 if (not DEBUG) and 0:
@@ -214,8 +207,18 @@ if (not DEBUG) and 0:
     OSS_ACCESS_KEY_SECRET = conf.get('oss', 'secret')
     from .settings_oss import *
 
-# from .settings_jwt import *
+# JWT配置
+from .settings_jwt import *
 # AUTH_USER_MODEL = "ncore.User"
+"""
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="http://cd0cdad8bbcd4b4b9591dbaf7b141ea5@sentry.polarwin.cn/7",
+    integrations=[DjangoIntegration()]
+)
+"""
 
 if "silk" in INSTALLED_APPS:
     DJANGO_EASY_AUDIT_UNREGISTERED_CLASSES_EXTRA = ["silk.Request", "silk.Response",
@@ -223,6 +226,7 @@ if "silk" in INSTALLED_APPS:
 
 SILKY_AUTHENTICATION = True  # User must login
 LOGIN_URL = 'rest_framework:login'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """
 TRACER_SERVICE_NAME = 'demo'
@@ -240,5 +244,3 @@ TRACER_CONFIG = {
     'baggage_header_prefix': 'jaegertrace-',
 }
 """
-
-
